@@ -1,6 +1,6 @@
 {
   "name": "@apigrate/slack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple utility to post messages to Slack using inbound webhooks.",
   "main": "index.js",
   "scripts": {
