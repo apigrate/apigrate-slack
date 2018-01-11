@@ -1,4 +1,4 @@
-//Version 2.0.0
+//Version 2.0.1
 const moment = require('moment');
 const request = require('request');
 
@@ -70,7 +70,7 @@ module.exports = function() {
         "success": {
             "title": "success",
             "type": "boolean",
-            "description": "Whether the log was written."
+            "description": "Whether the log was written. Note that this action will attempt to handle all errors; in other words, if logging fails for some reason, it should not cause the flow to fail."
         },
         "error": {
             "title": "error",
@@ -152,12 +152,12 @@ module.exports = function() {
     },
     function(err, resp, body){
         if(err){
-             return output(err, null);
+             return output(null, {success: false, error: "Unhandled error: " + JSON.stringify(err)});
         } else {
             if(body == 'ok'){
                 return output(null, {success: true});
             } else {
-                return output("Slack responded with: " + body, null);
+                return output(null, {success: false, error: "Slack responded with: " + body});
             }
         }
 
