@@ -24,8 +24,14 @@ var request = require('request');
   @param {object} options other options
   @example
   {
-    solution_url: 'string', // The optional solution URL link. Could be README documentation, for example for an app.
+    solution_url: "https://www.example.com/myapp/readme",
+    customer_id: 'abc12345', // The optional customer id. Generates an additional field for storing a customer identifier in cases where an app is used across multiple Apigrate customers/subscribers.
   }
+
+  For the options parameter, there are two supported options:
+  1. "solution_url" This is an optional string representing the solution URL link. Could be README documentation, for example for an app.
+  2. "customer_id" This is optional customer id. It results in  an additional attachment field for storing a customer identifier in cases where an app (i.e. the solution)
+  is used across multiple Apigrate customers/subscribers.
 
   @version 2.0.0
 
@@ -120,6 +126,15 @@ SlackLogger.prototype.log = function(success, entity, entity_id, summary, detail
       }
     ]
   };
+
+  if(self.options.customer_id){
+    var custField = {
+      "title": "customer_id",
+      "value": self.options.customer_id,
+      "short": true
+    };
+    slack_message.attachments[0].fields.push(custField);
+  }
 
   return request({
     method: "POST",
