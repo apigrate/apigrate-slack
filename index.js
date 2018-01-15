@@ -33,7 +33,7 @@ var request = require('request');
   2. "customer_id" This is optional customer id. It results in  an additional attachment field for storing a customer identifier in cases where an app (i.e. the solution)
   is used across multiple Apigrate customers/subscribers.
 
-  @version 2.0.1
+  @version 2.0.2
 
 */
 function SlackLogger(inbound_webhook, hostname, solution, options) {
@@ -43,6 +43,7 @@ function SlackLogger(inbound_webhook, hostname, solution, options) {
   this.inbound_webhook = inbound_webhook;
   this.hostname = hostname;
   this.solution = solution;
+  this.options = options;
   if (!options) {
     this.options = {};
   }
@@ -129,7 +130,7 @@ SlackLogger.prototype.log = function(success, entity, entity_id, summary, detail
 
   if(self.options.customer_id){
     var custField = {
-      "title": "customer_id",
+      "title": "customer id",
       "value": self.options.customer_id,
       "short": true
     };
