@@ -1,7 +1,7 @@
 {
   "name": "@apigrate/slack",
-  "version": "2.0.2",
-  "description": "A utility to standardize Apigrate solution logging to Slack using inbound webhooks.",
+  "version": "2.0.3",
+  "description": "Standardizes application transactional logging to Slack using inbound webhooks.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
