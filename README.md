@@ -5,51 +5,45 @@ A simple utility to post messages to Slack using inbound webhooks.
 
 Instantiating...
 ```
-var slackutil = require('@apigrate/slack');
+var webhook = 'https://hooks.slack.com/services/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';
 
-var webhook = 'https://hooks.slack.com/services/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'; //#slack-testing
+var SLOGGER = new SlackLogger(webhook,
+  "localhost",
+  "SlackLogger Test"
+);
+```
+In the above example, the app name  for each slack entry will be 'localhost' and the username will be "SlackLogger Test".  
 
-/*
-  Instantiate the Poster utility. Typically used for logging.
-  You can specify defaults that are to be used for all attachments.
-*/
-var SLOGGER = new slackutil.Poster(webhook, {
-  author_name: 'Built.io Flow: Proving Ground',
-  author_link: 'https://flow.built.io/#/flows/fl319d688b7c0151730a4e8d/edit',
-  fields:[
-    {title:'Environment', value:'Built.io', short:true},
-    {title:'Language', value:'NodeJS', short:true}
-  ]
-});
+Each log message must have the following parameters:
+
+1. true/false indicating success or failure
+1. the name of the primary entity involved in the transaction
+1. the id of the primary entity involved in the transaction
+1. the log message
+1. a more detailed message (optional). This could be log details, stack trace or other detailed information for the message (typically more useful to provide troubleshooting info on errors).
+
+### Examples
+Here's how to post a "success" message.
+```
+//parms: success, entity name, entity id, message, detailed message
+SLOGGER.log(
+  true,
+  'Account',
+  4,
+  'Success! Everything is OK.',
+  null
+);
 ```
 
-Post a message with multiple attachments.
+Here's how to post an error message with some detailed logging information.
 ```
-SLOGGER.post('This is ok', [{
-  color: "#30c030",
-  text:'Some embedded inline code: `One line.` Nice.'
-},{
-  color: "#3030c0",
-  text:'Here\'s yet *another* message in an attachment.'
-}]);
-```
+SLOGGER.log(
+  false,
+  'Account',
+  4,
+  'Error processing Account.',
+  'Unable to connect to the database. There may be a network problem. Please contact your network administrator.'
+);
 
-Post an error message with a single attachment. Note you can use an object instead of a an array.
 ```
-SLOGGER.post('Something bad happened.', {
-  text:'Some embedded inline code: `One line.` Nice.'
-});
-```
-
-### Formatting Conventions
-By convention, these Stripe color codes are used for attachment content on error, warn, ok and question messages respectively. Providing your own color code overrides these defaults.
-- error(): ```danger```,
-- warn(): ```warning```,
-- ok(): ```good```,
-- question() and post(): (none)
-
-By convention, these emojis are prepended to the main message used for consistency on error, warn, ok and question messages respectively.
-- Error: 	☠️
-- Warn: :warning:
-- OK: :white_check_mark:
-- Question: :question:
+...Note that the the logging details will be formatted in a markdown "code block" automatically for readability. You do not need to add these backticks yourself.
