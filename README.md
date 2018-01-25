@@ -5,7 +5,7 @@ A simple utility to post messages to Slack using inbound webhooks.
 
 Instantiating...
 ```
-var webhook = 'https://hooks.slack.com/services/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';
+var webhook = 'https://hooks.slack.com/services/TTTTTTTTT/BBBBBBBBBB/XXXXXXXXXXXXXXXXX';
 
 var SLOGGER = new SlackLogger(webhook,
   "localhost",
