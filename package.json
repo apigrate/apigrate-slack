@@ -1,6 +1,6 @@
 {
   "name": "@apigrate/slack",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "Standardizes application transactional logging to Slack using inbound webhooks.",
   "main": "index.js",
   "scripts": {
@@ -21,8 +21,9 @@
   },
   "homepage": "https://github.com/gaumeister/apigrate-slack#readme",
   "dependencies": {
-    "lodash": "^4.17.4",
-    "moment": "^2.18.1",
-    "request": "^2.81.0"
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
   }
 }
