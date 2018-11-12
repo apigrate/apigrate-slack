@@ -63,7 +63,7 @@ class SlackLogger{
     var self = this;
 
     if( _.isNil(success) || _.isNil(summary) ){
-      throw new Error("Invalid log invocation. The success, entity, entity_id, and summary parameters are all required.");
+      throw new Error("Invalid log invocation. The success, and summary fields required.");
     }
 
     var color = "good";
@@ -161,7 +161,7 @@ class SlackLogger{
       return Promise.resolve( {success: true} );
     })
     .catch(function(err){
-    	return Promise.reject( new Error(`Error. Slack responded with:\n${body}`) );
+    	return Promise.reject( new Error(`Error. Slack responded with:\n${err.message}`) );
     });
   }
 }

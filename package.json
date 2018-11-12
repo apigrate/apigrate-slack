@@ -1,6 +1,6 @@
 {
   "name": "@apigrate/slack",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Standardizes application transactional logging to Slack using inbound webhooks.",
   "main": "index.js",
   "scripts": {
