@@ -1,7 +1,7 @@
 {
   "name": "@apigrate/slack",
-  "version": "3.0.1",
-  "description": "Standardizes application transactional logging to Slack using inbound webhooks.",
+  "version": "4.0.0",
+  "description": "Convenience logger for transactional logging to Slack using inbound webhooks.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,10 @@
     "url": "git+https://github.com/gaumeister/apigrate-slack.git"
   },
   "keywords": [
-    "Apigrate",
-    "Slack"
+    "logging",
+    "log",
+    "Slack",
+    "Apigrate"
   ],
   "author": "Derek R. Gau",
   "license": "MIT",
@@ -21,9 +23,9 @@
   },
   "homepage": "https://github.com/gaumeister/apigrate-slack#readme",
   "dependencies": {
-    "lodash": "^4.17.11",
-    "moment": "^2.22.2",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.5"
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }

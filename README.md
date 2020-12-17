@@ -1,9 +1,5 @@
 # apigrate-slack
-A simple utility to post messages to Slack using inbound webhooks.
-
-Version 3.0.0 contains breaking changes:
-1. `hostname` in the constructor has been renamed to `username`. Semantically it still means the same thing.
-1. the `entity` and `entity_id` parameters are no longer part of the logging message. Use the fields hash instead.
+A simple utility to post messages to Slack using inbound webhooks. Useful for logging transactions to a channel where others can see the messages and take action if needed.
 
 ## Usage
 
@@ -48,12 +44,11 @@ Here's how to post a simple "success" message.
 ```javascript
 slack_logger.log(
   true,
-  'test environment',
-  'Success! Everything is OK.'
+  'That worked.'
 );
 ```
 
-It is possible include more detail in log messages. The fields hash parameter allows you to specify additional data that may be helpful for reporting or troubleshooting **on specific log messages**. Note that the the logging details will be formatted in fixed-font "code block" automatically for readability. Newline characters are respected by Slack in the formatting.
+It is possible include more detail in log messages. Provide a more detailed message (up to 7500 characters) if you like. Note that this detailed message will be formatted in fixed-font code block immediately following the summary message for readability (newline characters are respected by Slack in the formatting). Additionally, the fields parameter allows you to specify additional data that may be helpful for reporting or troubleshooting **on specific log messages**.
 ```javascript
 slack_logger.log(
   true,
@@ -70,7 +65,7 @@ Error log messages (as shown below) are more useful when they include detailed i
 ```javascript
 slack_logger.log(
   false,
-  'Invoice Created.',
+  'Invoice creation failed.',
   'Found customer.\nException processing invoice lines.\nThe quantity is missing for the line with product 1234879.',
   {
     customer_id: 28390,
