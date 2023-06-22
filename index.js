@@ -1,7 +1,7 @@
 /*
   MIT License
 
-  Copyright (c) 2018-2021 Apigrate LLC
+  Copyright (c) 2018-2023 Apigrate LLC
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -57,7 +57,7 @@ const fetch = require('node-fetch');
     }
   }
 
-  @version 4.0.0
+  @version 4.0.1
 */
 class SlackLogger{
   constructor(inbound_webhook, username, author, options){
